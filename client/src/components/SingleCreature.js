@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import EditCreature from './EditCreature'
+import { Redirect } from 'react-router-dom'
 
 class SingleCreature extends Component {
     state = {
@@ -30,12 +31,7 @@ class SingleCreature extends Component {
 
     }
 
-    // handleChange = (event, creatureId) => {
-    //     const attribute = event.target.name
-    //     const updatedState = {...this.state}
-    //     updatedState[attribute] = event.target.value
-    //     this.setState(updatedState)
-    // }
+
 
     handleChange = (event, creatureId) => {
         const attribute = event.target.name
@@ -58,13 +54,25 @@ class SingleCreature extends Component {
         try {
             const creatureId = this.props.match.params.id
               await axios.delete(`/api/creatures/${creatureId}`)
-          
+            this.setState({redirectToCreatures: true})
         } catch (error) {
             console.log(error)
         }
     }
 
+// redirectToCreatures = async () => {
+//     if (this.state.)
+
+// }
+
+
+
   render() {
+    if (this.state.redirectToCreatures === true) {
+        return (
+            <Redirect to={'/'} />
+        )
+    }
     return (
       <div>
        
