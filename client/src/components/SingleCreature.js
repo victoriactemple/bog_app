@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import EditCreature from './EditCreature'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 class SingleCreature extends Component {
     state = {
@@ -81,6 +81,7 @@ class SingleCreature extends Component {
 
         <button onClick={this.toggleEditForm}>Edit Creature</button>
         <button onClick={this.deleteCreature}>Delete Creature</button>
+        <Link to="/"><button>Back to Creatures</button></Link>
 
         {this.state.showEditForm ? <EditCreature 
         name={this.state.creature.name}
