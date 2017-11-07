@@ -8,7 +8,8 @@ class SingleCreature extends Component {
             name: "",
             description: ""
         }, 
-        showEditForm: false
+        showEditForm: false,
+        redirectToCreatures: false
     }
 
     componentWillMount () {
@@ -53,7 +54,15 @@ class SingleCreature extends Component {
 
     }
 
-
+    deleteCreature = async (event) => {
+        try {
+            const creatureId = this.props.match.params.id
+              await axios.delete(`/api/creatures/${creatureId}`)
+          
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
   render() {
     return (
@@ -63,6 +72,7 @@ class SingleCreature extends Component {
         <h3>{this.state.creature.description}</h3>
 
         <button onClick={this.toggleEditForm}>Edit Creature</button>
+        <button onClick={this.deleteCreature}>Delete Creature</button>
 
         {this.state.showEditForm ? <EditCreature 
         name={this.state.creature.name}
