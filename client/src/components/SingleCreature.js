@@ -6,7 +6,8 @@ class SingleCreature extends Component {
         creature: {
             name: "",
             description: ""
-        }
+        }, 
+        showEditForm: false
     }
 
     componentWillMount () {
@@ -19,12 +20,19 @@ class SingleCreature extends Component {
         this.setState({creature: response.data})
     }
 
+    toggleEditForm = () => {
+        this.setState({showEditForm: !this.state.showEditForm})
+    }
+
+
   render() {
     return (
       <div>
        
         <h1>{this.state.creature.name}</h1>
         <h3>{this.state.creature.description}</h3>
+
+        <button onClick={this.toggleEditForm}>Edit Creature</button>
        
       </div>
     );
